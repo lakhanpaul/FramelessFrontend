@@ -46,6 +46,7 @@
     "test": "jest",
     "start": "webpack serve --config config/webpack.dev.js",
     "build": "set NODE_ENV=production && webpack --config config/webpack.prod.js",
+    "heroku-postbuild": "webpack -p --config config/webpack.prod.js --progress",
     "build-staging": "set NODE_ENV=production && webpack --config config/webpack.stag.js",
     "prettify": "yarn prettier \"**/*.*(js|jsx)\" --ignore-path=.prettierignore --write",
     "predeploy": "npm run build",
