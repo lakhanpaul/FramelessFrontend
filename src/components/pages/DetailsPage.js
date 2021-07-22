@@ -19,10 +19,10 @@ import MinimalCenteredFooter from '../footers/MinimalCenteredFooter'
 //   const query = event.currentTarget.value || value
 
 //   const fetchResponse = async () => {
-//     console.log(`http://127.0.0.1:8000/api/search/opportunity/?search=${query}`)
+//     console.log(`https://frameless-backend-production.herokuapp.com/api/search/opportunity/?search=${query}`)
 //     try {
 //       const res = await axios.get(
-//         `http://127.0.0.1:8000/api/search/opportunity/?search=${query}`
+//         `https://frameless-backend-production.herokuapp.com/api/search/opportunity/?search=${query}`
 //       )
 //       console.log('this is the results', res.data)
 //       const response = res.data
@@ -82,7 +82,9 @@ const DetailsPage = () => {
 
   const fetchResponse = async (slug) => {
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/api/search/${slug}`)
+      const res = await axios.get(
+        `https://frameless-backend-production.herokuapp.com/api/search/${slug}`
+      )
       console.log('this is the results', res.data)
       return res.data
     } catch (error) {}
