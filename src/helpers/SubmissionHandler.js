@@ -17,8 +17,13 @@ const SubmissionHandler = (props) => {
 
   // accesses the fields, errors, listenforsearch and send email from context
   //   so that those actions can be executed
-  const { fields, errors, listenForSearch, sendEmailWithResponse } =
-    useContext(FormContext)
+  const {
+    fields,
+    errors,
+    listenForSearch,
+    sendEmailWithResponse,
+    submitOpportunity,
+  } = useContext(FormContext)
 
   // this creates an array where the name and value of the target fields will be stored as objects
   let targetFields = []
@@ -88,6 +93,7 @@ const SubmissionHandler = (props) => {
     // the function takes in the event to double check
     // that it is valid, and also the targetfields to pass
     // the necessary data to the email sending funtion
+    submitOpportunity(event, targetFields)
     sendEmailWithResponse(event, targetFields)
   }
 

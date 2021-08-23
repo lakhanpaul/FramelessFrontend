@@ -59,6 +59,7 @@ export default class Form extends Component {
       getResults: this.getResults,
       listenForSearch: this.listenForSearch,
       sendEmailWithResponse: this.sendEmailWithResponse,
+      submitOpportunity: this.submitOpportunity,
     }
 
     return (
@@ -233,6 +234,26 @@ export default class Form extends Component {
           console.log(error.text)
         }
       )
+  }
+
+  submitOpportunity = (event, targetFields) => {
+    console.log('here are the target fields passed in', targetFields)
+
+    let dataToSend = {}
+
+    let descriptionCards = []
+
+    for (var targetField of targetFields) {
+      console.log('Here are is the target field', targetField)
+      const cleanTargetField = {
+        [targetField.fieldName]: targetField.fieldValue,
+      }
+      console.log('Here is the clean target field', cleanTargetField)
+
+      Object.assign(dataToSend, cleanTargetField)
+    }
+
+    console.log('to SNENED', dataToSend)
   }
 
   // the purpose of this function is to add the the field to the form state,

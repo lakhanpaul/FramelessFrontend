@@ -1,0 +1,8 @@
+{"description-card-title-1" : "This is a card"}
+{"description-card-title-2" : "Another one"}
+
+
+description_cards = [
+    {title: "this is a card"},
+    {title: "another one"}
+]

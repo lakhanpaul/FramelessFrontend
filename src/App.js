@@ -36,6 +36,8 @@ import TwoColWithFeaturesAndTestimonial from './components/hero/TwoColWithFeatur
 import DetailsPage from './components/pages/DetailsPage'
 import Navbar from './components/partials/navigation/Navbar'
 import TwoColFormWithIllustration from './components/forms/TwoColFormWithIllustration'
+import TestForm from './components/forms/TestForm'
+import OpportunitySubmissionForm from './components/forms/OpportunitySubmissionForm'
 
 // allows toast notifications to be used
 toast.configure()
@@ -58,6 +60,12 @@ export default function App() {
         </Route>
         <Route path='/navigation'>
           <Navbar />
+        </Route>
+        <Route path='/test-form'>
+          <OpportunitySubmissionForm />
+        </Route>
+        <Route path='/test-form-two'>
+          <TestForm />
         </Route>
 
         <Route path='/opportunity/details/:slug'>

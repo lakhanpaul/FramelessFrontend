@@ -72,49 +72,74 @@ export default ({
           fieldEmailSend: false,
         },
         {
-          fieldId: 'opportunity_company',
+          fieldId: 'company',
           fieldPlaceholder:
             'Firing up boosters: From an organization? What is it called?',
           fieldType: 'input',
           fieldEmailSend: false,
         },
         {
-          fieldId: 'opportunity_title',
+          fieldId: 'title',
           fieldPlaceholder:
             'Time to launch: What is the title of your opportunity? ',
           fieldType: 'input',
           fieldEmailSend: false,
         },
         {
-          fieldId: 'opportunity_type',
+          fieldId: 'type',
           fieldPlaceholder:
             'What type of opportunity is it? e.g., lecture, workshop ',
           fieldType: 'input',
           fieldEmailSend: false,
         },
         {
-          fieldId: 'opportunity_duration',
+          fieldId: 'duration',
           fieldPlaceholder: 'How long does the opportunity last? ',
           fieldType: 'input',
           fieldEmailSend: false,
         },
         {
-          fieldId: 'opportunity_location',
+          fieldId: 'location',
           fieldPlaceholder:
             'Where is it located? e.g., Virtual or London, England',
           fieldType: 'input',
           fieldEmailSend: false,
         },
         {
-          fieldId: 'opportunity_url',
+          fieldId: 'url',
           fieldPlaceholder: 'Drop the url to your opportunity below ',
           fieldType: 'input',
           fieldEmailSend: false,
         },
         {
-          fieldId: 'opportunity_image_url',
+          fieldId: 'image',
           fieldPlaceholder:
             'What image would you like to use? - this should be a url link to the image',
+          fieldType: 'input',
+          fieldEmailSend: false,
+        },
+
+        {
+          fieldId: 'description-card-title-1',
+          fieldPlaceholder: 'Creating a description card',
+          fieldType: 'input',
+          fieldEmailSend: false,
+        },
+        {
+          fieldId: 'description-card-image-1',
+          fieldPlaceholder: 'Creating a description card image',
+          fieldType: 'input',
+          fieldEmailSend: false,
+        },
+        {
+          fieldId: 'description-card-title-2',
+          fieldPlaceholder: 'Creating a description card',
+          fieldType: 'input',
+          fieldEmailSend: false,
+        },
+        {
+          fieldId: 'description-card-image-2',
+          fieldPlaceholder: 'Creating a description card image',
           fieldType: 'input',
           fieldEmailSend: false,
         },
@@ -213,7 +238,8 @@ export default ({
                     // first the id and placeholder are extracted, as the fields are passed in as
                     // an array of objects, then the element is created
                     // the id is what the field actually is, the placeholder is the prompt given to
-                    // the user, and the type determines whether it is an small input box or a large text area.
+                    // the user, and the type determines whether it is an small input box or a large text area
+
                     const {
                       fieldId,
                       fieldPlaceholder,
