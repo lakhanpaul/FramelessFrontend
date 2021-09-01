@@ -7,7 +7,7 @@ import { css } from 'styled-components/macro'
 import Navbar from '../partials/navigation/Navbar'
 import SearchBar from '../search/SearchBar'
 
-const Container = tw.div`relative h-screen w-screen`
+const Container = tw.div`relative h-screen w-screen overflow-x-hidden`
 
 const MainPage = () => {
   return (

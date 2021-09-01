@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import tw, { styled } from 'twin.macro'
 import { css } from 'styled-components/macro' //eslint-disable-line
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { transformData } from './dataManipulation'
 import Navbar from '../partials/navigation/Navbar'
+import { Select } from 'antd'
 // There will be multiple forms here, all with the same styling but different descriptions
 // , the submission handler function, which will be used for these forms, will simply add all
 // the responses to a single object.
@@ -53,14 +54,53 @@ const Separator = tw.hr`border  border-dashed`
 const ErrorMessage = tw.p`text-xs font-semibold text-red-900`
 
 const OpportunitySubmissionForm = () => {
+  const [categories, setCategories] = useState([])
+  const [response, setResponse] = useState()
+  const [error, setError] = useState()
   let history = useHistory()
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm()
-  const [response, setResponse] = useState()
-  const [error, setError] = useState()
+
+  const { Option } = Select
+
+  const convertArrayOfObjectToArrayOfObjectValues = (array) => {
+    const convertedArray = array.map((object) => {
+      return Object.values(object)[0]
+    })
+    return convertedArray
+  }
+
+  const fetchCategories = () => {
+    const fetchResponse = async () => {
+      console.log(
+        `https://frameless-backend-production.herokuapp.com/api/search/category/`
+      )
+      try {
+        const res = await axios.get(
+          `https://frameless-backend-production.herokuapp.com/api/search/category/`
+        )
+        console.log('this is the results', res.data)
+        const rawCategories = res.data
+        const refinedCategories =
+          convertArrayOfObjectToArrayOfObjectValues(rawCategories)
+        setCategories(refinedCategories)
+
+        return refinedCategories
+      } catch (error) {
+        console.log('there was an error', error)
+        return error
+      }
+    }
+    fetchResponse()
+  }
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
 
   const postToBackend = (data) => {
     axios({
@@ -138,6 +178,69 @@ const OpportunitySubmissionForm = () => {
                       )}
                     </ThreeToSixColumn>
 
+                    <ThreeToSixColumn>
+                      {/* <label>Category One</label>
+                      <Controller
+                        control={control}
+                        name='category-one'
+                        render={({ field }) => (
+                          <Select {...field} defaultValue='lucy'>
+                            {categories.map((category) => {
+                              return (
+                                <Option value={category}>{category}</Option>
+                              )
+                            })}
+                          </Select>
+                        )}
+                      />
+                      <label>Category Two</label>
+                      <Controller
+                        control={control}
+                        name='category-two'
+                        render={({ field }) => (
+                          <Select {...field} defaultValue='Technology'>
+                            {categories.map((category) => {
+                              return (
+                                <Option value={category}>{category}</Option>
+                              )
+                            })}
+                          </Select>
+                        )}
+                      />
+                      <label>Category Three</label>
+                      <Controller
+                        control={control}
+                        name='category-three'
+                        render={({ field }) => (
+                          <Select {...field} defaultValue='Technology'>
+                            {categories.map((category) => {
+                              return (
+                                <Option value={category}>{category}</Option>
+                              )
+                            })}
+                          </Select>
+                        )}
+                      />
+                      {errors.title && (
+                        <ErrorMessage>{errors.title.message}</ErrorMessage>
+                      )} */}
+                      <PrimarySelect {...register('category-one')}>
+                        {categories.map((category) => {
+                          return <option>{category}</option>
+                        })}
+                      </PrimarySelect>
+                      <PrimarySelect {...register('category-two')}>
+                        {categories.map((category) => {
+                          return <option>{category}</option>
+                        })}
+                      </PrimarySelect>
+                      <PrimarySelect {...register('category-three')}>
+                        {categories.map((category) => {
+                          return <option>{category}</option>
+                        })}
+                      </PrimarySelect>
+                    </ThreeToSixColumn>
+
                     <FourToSixColumn>
                       <Label htmlFor='country'>URL</Label>
 
@@ -153,6 +256,22 @@ const OpportunitySubmissionForm = () => {
                         <ErrorMessage>{errors.url.message}</ErrorMessage>
                       )}
                     </FourToSixColumn>
+
+                    <SixColumn>
+                      <Label htmlFor='street-address'>
+                        Opportunity Description
+                      </Label>
+
+                      <PrimaryInput
+                        {...register('description', {
+                          required:
+                            'This is a required field, please fill it out',
+                        })}
+                      />
+                      {errors.image && (
+                        <ErrorMessage>{errors.image.message}</ErrorMessage>
+                      )}
+                    </SixColumn>
 
                     <SixColumn>
                       <Label htmlFor='street-address'>Opportunity Image</Label>

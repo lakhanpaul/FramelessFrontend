@@ -17,6 +17,14 @@ function isNotDescriptionCardProperty([key, value]) {
   return key.indexOf('description-card') === -1
 }
 
+function isCategoryProperty([key, value]) {
+  return key.indexOf('category') !== -1
+}
+
+function isNotCategoryProperty([key, value]) {
+  return key.indexOf('category') === -1
+}
+
 // function containsNumber([key, value], numberAsString) {
 //   return key.indexOf(numberAsString) !== -1;
 // }
@@ -75,6 +83,14 @@ function transformSecondaryPropertyNames([key, value]) {
   } else {
     return [key, value]
   }
+}
+
+function transformArrayOfArraysToArrayOfObjects(array) {
+  let transformedArray = []
+  for (let [key, value] of array) {
+    transformedArray.push({ name: value })
+  }
+  return transformedArray
 }
 
 // // convert the data to an iterable
@@ -180,6 +196,9 @@ const test_data = {
   duration: '10 days',
   location: 'Nigeria',
   url: 'https://youtube.com',
+  'category-one': 'Technology',
+  'category-two': 'Medicine',
+  'category-three': 'Hospitality',
 
   'description-card-one-title': 'Title one',
   'description-card-one-subtitle': 'Subtitle one',
@@ -425,9 +444,23 @@ export function transformData(dataToTransform) {
   const descriptionCardPropertiesIterable = dataAsIterable.filter(
     isDescriptionCardProperty
   )
-  const notDescriptionCardPropertiesIterable = dataAsIterable.filter(
-    isNotDescriptionCardProperty
+  const notDescriptionCardPropertiesCategoriesIterableWithCategories =
+    dataAsIterable.filter(isNotDescriptionCardProperty)
+
+  const notDescriptionCardPropertiesIterable =
+    notDescriptionCardPropertiesCategoriesIterableWithCategories.filter(
+      isNotCategoryProperty
+    )
+
+  const categoryPropertiesIterable =
+    notDescriptionCardPropertiesCategoriesIterableWithCategories.filter(
+      isCategoryProperty
+    )
+
+  const arrayOfCategoryObjects = transformArrayOfArraysToArrayOfObjects(
+    categoryPropertiesIterable
   )
+
   const notDescriptionCardPropertiesAsObject = convertToObject(
     notDescriptionCardPropertiesIterable
   )
@@ -461,6 +494,7 @@ export function transformData(dataToTransform) {
 
   const transformedData = Object.assign(notDescriptionCardPropertiesAsObject, {
     description_cards: arrayOfDescriptionCardObjects,
+    categories: arrayOfCategoryObjects,
   })
 
   return transformedData

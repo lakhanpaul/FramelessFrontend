@@ -7,6 +7,7 @@ import TextInput from '../../helpers/TextInput'
 import ResultsDisplay from '../../helpers/ResultsDisplay'
 import Navbar from '../partials/navigation/Navbar'
 import MinimalCenteredFooter from '../footers/MinimalCenteredFooter'
+import NewSearchBar from './NewSearchBar'
 
 // const HeaderContainer = tw.div`relative flex flex-col w-full h-full`
 
@@ -34,7 +35,7 @@ const SearchBar = ({}) => {
 
   return (
     <>
-      <Form>
+      {/* <Form>
         <HeaderContainer>
           <Navbar />
           <HeaderContentContainer>
@@ -51,7 +52,8 @@ const SearchBar = ({}) => {
           <ResultsDisplay id='search test' />
         </ResultsContainer>
         <MinimalCenteredFooter />
-      </Form>
+      </Form> */}
+      <NewSearchBar />
     </>
   )
 }

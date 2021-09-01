@@ -38,6 +38,10 @@ import Navbar from './components/partials/navigation/Navbar'
 import TwoColFormWithIllustration from './components/forms/TwoColFormWithIllustration'
 import TestForm from './components/forms/TestForm'
 import OpportunitySubmissionForm from './components/forms/OpportunitySubmissionForm'
+import ResultsDisplayCards from './components/cards/ResultsDisplayCards'
+import NewNavbar from './components/partials/navigation/NewNavbar'
+import Opportunities from './components/pages/Opportunities'
+import DescriptionCards from './components/cards/DescriptionCards'
 
 // allows toast notifications to be used
 toast.configure()
@@ -59,7 +63,7 @@ export default function App() {
           <TwoColFormWithIllustration />
         </Route>
         <Route path='/navigation'>
-          <Navbar />
+          <NewNavbar />
         </Route>
         <Route path='/test-form'>
           <OpportunitySubmissionForm />
@@ -67,7 +71,12 @@ export default function App() {
         <Route path='/test-form-two'>
           <TestForm />
         </Route>
-
+        <Route path='/card'>
+          <DescriptionCards />
+        </Route>
+        <Route to='/opportunities'>
+          <Opportunities />
+        </Route>
         <Route path='/opportunity/details/:slug'>
           <DetailsPage />
         </Route>

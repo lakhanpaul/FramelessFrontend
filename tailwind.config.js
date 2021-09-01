@@ -6,6 +6,18 @@ module.exports = {
   separator: ':',
   theme: {
     extend: {
+      colors: {
+        'blue-1': '#e6f7ff',
+        'blue-2': '#bae7ff',
+        'blue-3': '#91d5ff',
+        'blue-4': '#69c0ff',
+        'blue-5': '#40a9ff',
+        'blue-6': '#1890ff',
+        'blue-7': '#096dd9',
+        'blue-8': '#0050b3',
+        'blue-9': '#003a8c',
+        'blue-10': '#002766',
+      },
       height: {
         1: '1rem',
         2: '2rem',

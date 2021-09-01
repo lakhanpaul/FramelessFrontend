@@ -37,7 +37,7 @@ const Navbar = () => {
           </NavListContainer>
         </NavLinksContainer>
         <LogoContainer to='/'>
-          <div class='w-1 h-1 p-2 mr-2 hidden lg:inline-block rounded-full bg-gradient-to-tr to-red-700 from-gray-300'></div>
+          <div className='hidden w-1 h-1 p-2 mr-2 rounded-full lg:inline-block bg-gradient-to-tr to-red-700 from-gray-300'></div>
           <MainTitle> Frameless</MainTitle>
         </LogoContainer>
         <PrimaryButton to='/submission/opportunity'>
